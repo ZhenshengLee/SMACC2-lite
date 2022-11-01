@@ -16,16 +16,25 @@
 
 // CLIENTS
 #include <ros_timer_client/cl_ros_timer.hpp>
+#include "clients/cl_temperature_sensor/cl_temperature_sensor.hpp"
+#include "clients/cl_subscriber/cl_subscriber.hpp"
 
 //CLIENT BEHAVIORS
 #include <ros_timer_client/client_behaviors/cb_timer_countdown_loop.hpp>
 #include <ros_timer_client/client_behaviors/cb_timer_countdown_once.hpp>
+#include "clients/cl_temperature_sensor/client_behaviors/cb_custom_condition_temperature_sensor.hpp"
+#include "clients/cl_subscriber/client_behaviors/cb_default_subscriber_behavior.hpp"
 
 // ORTHOGONALS
 #include "orthogonals/or_timer.hpp"
+#include "orthogonals/or_temperature_sensor.hpp"
+#include "orthogonals/or_subscriber.hpp"
 
 using namespace boost;
 using namespace smacc2;
+
+using namespace sm_atomic::cl_temperature_sensor;
+using namespace sm_atomic::cl_subscriber;
 
 namespace sm_atomic
 {
@@ -39,7 +48,12 @@ struct SmAtomic : public smacc2::SmaccStateMachineBase<SmAtomic, State1>
 {
   using SmaccStateMachineBase::SmaccStateMachineBase;
 
-  virtual void onInitialize() override { this->createOrthogonal<OrTimer>(); }
+  virtual void onInitialize() override
+  {
+    this->createOrthogonal<OrTimer>();
+    this->createOrthogonal<OrTemperatureSensor>();
+    // this->createOrthogonal<OrSubscriber>();
+  }
 };
 
 }  // namespace sm_atomic

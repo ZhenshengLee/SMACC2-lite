@@ -11,6 +11,8 @@
 
   <depend>ros_timer_client</depend>
   <depend>smacc2</depend>
+  <depend>sensor_msgs</depend>
+  <depend>multirole_sensor_client</depend>
 
   <exec_depend>xterm</exec_depend>
 

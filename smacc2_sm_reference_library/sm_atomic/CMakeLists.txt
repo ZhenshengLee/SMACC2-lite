@@ -14,7 +14,16 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(smacc2 REQUIRED)
 find_package(ros_timer_client REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(multirole_sensor_client REQUIRED)
 find_package(Boost COMPONENTS thread REQUIRED)
+
+set(dependencies
+  smacc2
+  ros_timer_client
+  sensor_msgs
+  multirole_sensor_client
+)
 
 include_directories(include
                     ${smacc2_INCLUDE_DIRS}
@@ -29,7 +38,7 @@ target_link_libraries(${PROJECT_NAME}_node
   ${Boost_LIBRARIES}
 )
 
-ament_target_dependencies(${PROJECT_NAME}_node smacc2)
+ament_target_dependencies(${PROJECT_NAME}_node ${dependencies})
 
 install(
   DIRECTORY include/

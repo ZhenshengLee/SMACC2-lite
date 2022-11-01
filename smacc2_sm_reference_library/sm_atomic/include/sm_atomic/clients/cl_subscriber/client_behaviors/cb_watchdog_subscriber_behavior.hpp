@@ -12,22 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <chrono>
-#include <ros_timer_client/cl_ros_timer.hpp>
-#include <smacc2/smacc.hpp>
+#pragma once
+#include <sm_multi_stage_1/clients/cl_subscriber/cl_subscriber.hpp>
 
-using namespace std::chrono_literals;
-
-namespace sm_atomic
+namespace sm_multi_stage_1
 {
-using namespace std::chrono_literals;
-class OrTimer : public smacc2::Orthogonal<OrTimer>
+namespace cl_subscriber
+{
+class CbWatchdogSubscriberBehavior : public smacc2::SmaccClientBehavior
 {
 public:
-  void onInitialize() override
-  {
-    auto client = this->createClient<cl_ros_timer::ClRosTimer>(1s);
-    // client->initialize();
-  }
+  typedef std_msgs::msg::UInt16 TMessageType;
+
+  void onEntry() {}
 };
-}  // namespace sm_atomic
+}  // namespace cl_subscriber
+}  // namespace sm_multi_stage_1
