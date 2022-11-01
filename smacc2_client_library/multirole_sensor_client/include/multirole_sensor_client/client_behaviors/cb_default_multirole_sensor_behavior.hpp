@@ -65,10 +65,11 @@ public:
   }
 
   template <typename EvType>
-  void propagateEvent(const TMessageType & /*msg*/)
+  void propagateEvent(const TMessageType & msg)
   {
     // TODO: copy event concept fields
     this->postEvent<EvType>();
+    onMessageCallback(msg);
   }
 
   template <typename EvType>
