@@ -23,12 +23,12 @@
 #include <thread>
 #include <vector>
 
-#include <lttng/tracepoint.h>
+// #include <lttng/tracepoint.h>
 #include <smacc2/client_bases/smacc_action_client_base.hpp>
 #include <smacc2/smacc_signal_detector.hpp>
 #include <smacc2/smacc_state_machine.hpp>
 // #include <smacc2/smacc_tracing/trace_provider.hpp>
-#include <smacc2/smacc_tracing/smacc_tracing.hpp>
+// #include <smacc2/smacc_tracing/smacc_tracing.hpp>
 
 //#include "tracetools/tracetools.h"
 
@@ -212,8 +212,8 @@ void SignalDetector::pollOnce()
 {
   // precondition: smaccStateMachine_ != nullptr
 
-  //TRACEPOINT( spinOnce);
-  TRACEPOINT(spinOnce);
+  //// TRACEPOINT( spinOnce);
+  // TRACEPOINT(spinOnce);
 
   std::lock_guard<std::recursive_mutex> lock(smaccStateMachine_->m_mutex_);
   try
@@ -246,9 +246,9 @@ void SignalDetector::pollOnce()
             node->get_logger(),
             "[PollOnce] update client call:  " << demangleType(typeid(*updatableClient)));
 
-          TRACEPOINT(smacc2_state_update_start, updatableElementName);
+          // TRACEPOINT(smacc2_state_update_start, updatableElementName);
           updatableClient->executeUpdate(smaccStateMachine_->getNode());
-          TRACEPOINT(smacc2_state_update_start, updatableElementName);
+          // TRACEPOINT(smacc2_state_update_start, updatableElementName);
         }
         catch (const std::exception & e)
         {
@@ -307,9 +307,9 @@ void SignalDetector::pollOnce()
                 getLogger(),
                 "[SignalDetector] client behavior: " << updatableElementName << "::update()");
 
-              TRACEPOINT(smacc2_state_update_start, updatableElementNameCstr);
+              // TRACEPOINT(smacc2_state_update_start, updatableElementNameCstr);
               udpatableStateElement->executeUpdate(smaccStateMachine_->getNode());
-              TRACEPOINT(smacc2_state_update_start, updatableElementNameCstr);
+              // TRACEPOINT(smacc2_state_update_start, updatableElementNameCstr);
             }
             catch (const std::exception & e)
             {

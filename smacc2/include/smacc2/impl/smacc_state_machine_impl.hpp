@@ -44,7 +44,7 @@
 #include <boost/function_types/function_arity.hpp>
 #include <boost/function_types/function_type.hpp>
 #include <boost/function_types/parameter_types.hpp>
-#include <smacc2/smacc_tracing/smacc_tracing.hpp>
+// #include <smacc2/smacc_tracing/smacc_tracing.hpp>
 #include <smacc2_msgs/msg/smacc_status.hpp>
 
 namespace smacc2
@@ -180,7 +180,7 @@ void ISmaccStateMachine::postEvent(EventType * ev, EventLifeTime evlifetime)
 
 #define eventtypename demangleSymbol<EventType>().c_str()
 
-  TRACEPOINT(smacc2_event, eventtypename);
+  // TRACEPOINT(smacc2_event, eventtypename);
 
   if (
     evlifetime == EventLifeTime::CURRENT_STATE &&

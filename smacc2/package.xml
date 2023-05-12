@@ -22,9 +22,9 @@
   <depend>rclcpp_action</depend>
   <depend>sdformat_urdf</depend>
   <depend>smacc2_msgs</depend>
-  <depend>tracetools</depend>
+  <!-- <depend>tracetools</depend>
   <depend>tracetools_trace</depend>
-  <depend>tracetools_launch</depend>
+  <depend>tracetools_launch</depend> -->
 
   <exec_depend>libboost-thread</exec_depend>
 

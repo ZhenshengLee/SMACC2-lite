@@ -21,7 +21,7 @@
 #include <smacc2/impl/smacc_state_machine_impl.hpp>
 #include <smacc2/smacc_client_behavior.hpp>
 #include <smacc2/smacc_orthogonal.hpp>
-#include <smacc2/smacc_tracing/smacc_tracing.hpp>
+// #include <smacc2/smacc_tracing/smacc_tracing.hpp>
 
 #define statename stateMachine_->getCurrentState()->getClassName().c_str()
 #define orthogonalName getName().c_str()
@@ -99,7 +99,7 @@ void ISmaccOrthogonal::onEntry()
 
       try
       {
-        TRACEPOINT(smacc2_client_behavior_on_entry_start, statename, orthogonalName, cbName);
+        // TRACEPOINT(smacc2_client_behavior_on_entry_start, statename, orthogonalName, cbName);
         clBehavior->executeOnEntry();
       }
       catch (const std::exception & e)
@@ -111,7 +111,7 @@ void ISmaccOrthogonal::onEntry()
           "%s",
           cbName, e.what());
       }
-      TRACEPOINT(smacc2_client_behavior_on_entry_end, statename, orthogonalName, cbName);
+      // TRACEPOINT(smacc2_client_behavior_on_entry_end, statename, orthogonalName, cbName);
     }
   }
   else
@@ -134,7 +134,7 @@ void ISmaccOrthogonal::onExit()
         getLogger(), "[Orthogonal %s] OnExit, current Behavior: %s", orthogonalName, cbName);
       try
       {
-        TRACEPOINT(smacc2_client_behavior_on_exit_start, statename, orthogonalName, cbName);
+        // TRACEPOINT(smacc2_client_behavior_on_exit_start, statename, orthogonalName, cbName);
         clBehavior->executeOnExit();
       }
       catch (const std::exception & e)
@@ -145,7 +145,7 @@ void ISmaccOrthogonal::onExit()
           "info: %s",
           cbName, e.what());
       }
-      TRACEPOINT(smacc2_client_behavior_on_exit_end, statename, orthogonalName, cbName);
+      // TRACEPOINT(smacc2_client_behavior_on_exit_end, statename, orthogonalName, cbName);
     }
 
     int i = 0;

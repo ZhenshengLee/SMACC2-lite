@@ -18,19 +18,24 @@ find_package(rclcpp REQUIRED)
 find_package(rclcpp_action REQUIRED)
 find_package(smacc2_msgs REQUIRED)
 find_package(Boost COMPONENTS thread REQUIRED)
-find_package(tracetools)
-find_package(LTTngUST REQUIRED)
+# find_package(tracetools)
+# find_package(LTTngUST REQUIRED)
 
 set(dependencies
   rclcpp
   smacc2_msgs
   rclcpp_action
-  tracetools
+  # tracetools
 )
 
-include_directories(include ${LTTNGUST_INCLUDE_DIRS})
+include_directories(include)
 
 file(GLOB_RECURSE SRC_FILES src *.cpp)
+get_filename_component(TRACING_CPP_FULL_PATH src/smacc2/smacc_tracing.cpp ABSOLUTE)
+get_filename_component(TRACE_PROVIDER_CPP_FULL_PATH src/smacc2/trace_provider.cpp ABSOLUTE)
+list(REMOVE_ITEM SRC_FILES ${TRACING_CPP_FULL_PATH})
+list(REMOVE_ITEM SRC_FILES ${TRACE_PROVIDER_CPP_FULL_PATH})
+message(STATUS "zs: ${SRC_FILES}")
 add_library(smacc2 SHARED ${SRC_FILES})
 
 # removes unused parameters warning related with lttng, compiler warning
@@ -43,7 +48,7 @@ set_source_files_properties(
 ament_target_dependencies(smacc2 ${dependencies})
 target_link_libraries(smacc2
   ${Boost_LIBRARIES}
-  ${LTTNGUST_LIBRARIES}
+  # ${LTTNGUST_LIBRARIES}
 )
 
 ament_export_include_directories(include)
