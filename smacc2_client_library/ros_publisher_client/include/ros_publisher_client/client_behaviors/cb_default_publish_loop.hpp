@@ -27,7 +27,7 @@ class CbDefaultPublishLoop : public smacc2::SmaccClientBehavior, public smacc2::
 {
 private:
   std::function<void()> deferedPublishFn_;
-  ClRosPublisher * client_;
+  ClRosPublisher * client_ = NULL;
 
 public:
   CbDefaultPublishLoop() : deferedPublishFn_(nullptr) {}
